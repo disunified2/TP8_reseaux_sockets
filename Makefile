@@ -7,10 +7,10 @@ all: $(BUILD_DIR)/client $(BUILD_DIR)/server
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-$(BUILD_DIR)/client: question_1/client.c | $(BUILD_DIR)
+$(BUILD_DIR)/client: question_2/client.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $< -o $@
 
-$(BUILD_DIR)/server: question_1/server.c | $(BUILD_DIR)
+$(BUILD_DIR)/server: question_2/server.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
