@@ -13,7 +13,7 @@
 #include <unistd.h>
 #include <netdb.h>
 
-#define BUFSIZE 100003
+#define BUFSIZE 10
 
 
 int main(const int argc, char *argv[]) {
@@ -62,16 +62,17 @@ int main(const int argc, char *argv[]) {
 
     // Lecture de ce qui arrive du serveur
     char buf[BUFSIZE];
-    ssize_t recvlen = recv(sockfd, buf, BUFSIZE, 0);
-    if (recvlen == -1) {
-        perror("recv");
-        return EXIT_FAILURE;
-    }
-    fprintf(stdout, "Message received : ");
+    for (int i = 0; i < 10; i++) {
+        ssize_t recvlen = recv(sockfd, buf, BUFSIZE, 0);
+        if (recvlen == -1) {
+            perror("recv");
+            return EXIT_FAILURE;
+        }
 
-    // Affichage du buffer
-    buf[recvlen] = '\0';
-    printf("%s\n", buf);
+        // Affichage du buffer
+        buf[recvlen] = '\0';
+        printf("%s", buf);
+    }
 
     // Fermeture du socket
     shutdown(sockfd, SHUT_RDWR);
